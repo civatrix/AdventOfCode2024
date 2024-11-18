@@ -90,6 +90,13 @@
 		B93F1BB5293C12EA008D5BD1 /* Day25.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB244291D93160032E7E9 /* Day25.swift */; };
 		B93F1BB6293C12EA008D5BD1 /* Day25.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB244291D93160032E7E9 /* Day25.swift */; };
 		B93F1BB7293C12ED008D5BD1 /* Day25Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB246291D93160032E7E9 /* Day25Tests.swift */; };
+		B96550672CEAD4E40083B797 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B965505F2CEAD4E40083B797 /* AStar.swift */; };
+		B96550682CEAD4E40083B797 /* ElfCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550602CEAD4E40083B797 /* ElfCode.swift */; };
+		B96550692CEAD4E40083B797 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550612CEAD4E40083B797 /* Extensions.swift */; };
+		B965506A2CEAD4E40083B797 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550622CEAD4E40083B797 /* Math.swift */; };
+		B965506B2CEAD4E40083B797 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550632CEAD4E40083B797 /* Point.swift */; };
+		B965506C2CEAD4E40083B797 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550642CEAD4E40083B797 /* Point3D.swift */; };
+		B965506D2CEAD4E40083B797 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550652CEAD4E40083B797 /* Queue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +225,13 @@
 		B93F1B60293C0C9E008D5BD1 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		B9584841295B716700B2A37C /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		B9584842295B7F6200B2A37C /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
+		B965505F2CEAD4E40083B797 /* AStar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
+		B96550602CEAD4E40083B797 /* ElfCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElfCode.swift; sourceTree = "<group>"; };
+		B96550612CEAD4E40083B797 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B96550622CEAD4E40083B797 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		B96550632CEAD4E40083B797 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		B96550642CEAD4E40083B797 /* Point3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
+		B96550652CEAD4E40083B797 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,8 +265,8 @@
 		B93AB205291C2A130032E7E9 = {
 			isa = PBXGroup;
 			children = (
-				B93AB22E291C3A260032E7E9 /* AdventOfCode.xctestplan */,
 				B93AB210291C2A130032E7E9 /* AdventOfCode */,
+				B93AB22E291C3A260032E7E9 /* AdventOfCode.xctestplan */,
 				B93F1B37293C0BC2008D5BD1 /* AdventOfCodeKit */,
 				B93AB218291C2CB90032E7E9 /* Day1 */,
 				B93AB26B291D93170032E7E9 /* Day2 */,
@@ -279,8 +293,9 @@
 				B93AB273291D93170032E7E9 /* Day23 */,
 				B93AB28B291D93170032E7E9 /* Day24 */,
 				B93AB243291D93160032E7E9 /* Day25 */,
-				B93AB20F291C2A130032E7E9 /* Products */,
 				B93F1B4E293C0C14008D5BD1 /* Frameworks */,
+				B96550662CEAD4E40083B797 /* Helpers */,
+				B93AB20F291C2A130032E7E9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -571,6 +586,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B96550662CEAD4E40083B797 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B965505F2CEAD4E40083B797 /* AStar.swift */,
+				B96550602CEAD4E40083B797 /* ElfCode.swift */,
+				B96550612CEAD4E40083B797 /* Extensions.swift */,
+				B96550622CEAD4E40083B797 /* Math.swift */,
+				B96550632CEAD4E40083B797 /* Point.swift */,
+				B96550642CEAD4E40083B797 /* Point3D.swift */,
+				B96550652CEAD4E40083B797 /* Queue.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -719,6 +748,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B93F1BB2293C12E0008D5BD1 /* Day24.swift in Sources */,
+				B965506A2CEAD4E40083B797 /* Math.swift in Sources */,
 				B93F1B91293C128B008D5BD1 /* Day13.swift in Sources */,
 				B93F1B61293C0C9E008D5BD1 /* Entry.swift in Sources */,
 				B93F1B7C293C1250008D5BD1 /* Day6.swift in Sources */,
@@ -733,16 +763,22 @@
 				B93F1B4B293C0BCC008D5BD1 /* Day1.swift in Sources */,
 				B93F1B57293C0C42008D5BD1 /* Day.swift in Sources */,
 				B93F1B78293C1248008D5BD1 /* Day5.swift in Sources */,
+				B965506B2CEAD4E40083B797 /* Point.swift in Sources */,
 				B93F1BA7293C12C3008D5BD1 /* Day20.swift in Sources */,
 				B93F1BAF293C12D8008D5BD1 /* Day23.swift in Sources */,
 				B93F1BB5293C12EA008D5BD1 /* Day25.swift in Sources */,
 				B93F1B72293C1227008D5BD1 /* Day3.swift in Sources */,
+				B965506C2CEAD4E40083B797 /* Point3D.swift in Sources */,
 				B93F1B85293C126F008D5BD1 /* Day9.swift in Sources */,
 				B93F1B9A293C12A5008D5BD1 /* Day16.swift in Sources */,
+				B96550672CEAD4E40083B797 /* AStar.swift in Sources */,
 				B93F1B75293C1241008D5BD1 /* Day4.swift in Sources */,
 				B93F1BA0293C12B4008D5BD1 /* Day18.swift in Sources */,
+				B96550682CEAD4E40083B797 /* ElfCode.swift in Sources */,
+				B96550692CEAD4E40083B797 /* Extensions.swift in Sources */,
 				B93F1B7E293C1258008D5BD1 /* Day7.swift in Sources */,
 				B93F1B9D293C12AD008D5BD1 /* Day17.swift in Sources */,
+				B965506D2CEAD4E40083B797 /* Queue.swift in Sources */,
 				B93F1BA9293C12CA008D5BD1 /* Day21.swift in Sources */,
 				B93F1BA3293C12BC008D5BD1 /* Day19.swift in Sources */,
 			);
