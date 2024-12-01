@@ -9,17 +9,13 @@ import Foundation
 
 final class Day1: Day {
     func run(input: String) -> String {
-        var left: [Int] = []
-        var right: [Int] = []
+        var list = [Int: Int]()
+        var left = [Int]()
         input.allDigits.chunks(ofCount: 2).forEach {
             left.append($0[n: 0])
-            right.append($0[n: 1])
+            list[$0[n: 1], default: 0] += 1
         }
-        left.sort()
-        right.sort()
         
-        return zip(left, right).map {
-            abs($0.0 - $0.1)
-        }.sum.description
+        return left.map { list[$0, default: 0] * $0 }.sum.description
     }
 }
