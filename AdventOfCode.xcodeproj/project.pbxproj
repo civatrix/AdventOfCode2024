@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B93AB212291C2A130032E7E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB211291C2A130032E7E9 /* main.swift */; };
+		B93DDC292CFC26B600097A9B /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550632CEAD4E40083B797 /* Point.swift */; };
+		B93DDC2A2CFC26B600097A9B /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550652CEAD4E40083B797 /* Queue.swift */; };
+		B93DDC2B2CFC26B600097A9B /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550642CEAD4E40083B797 /* Point3D.swift */; };
+		B93DDC2C2CFC26B600097A9B /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550622CEAD4E40083B797 /* Math.swift */; };
+		B93DDC2D2CFC26B700097A9B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550612CEAD4E40083B797 /* Extensions.swift */; };
+		B93DDC2E2CFC26B700097A9B /* ElfCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550602CEAD4E40083B797 /* ElfCode.swift */; };
+		B93DDC2F2CFC26B700097A9B /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B965505F2CEAD4E40083B797 /* AStar.swift */; };
 		B93F1B3E293C0BC2008D5BD1 /* AdventOfCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93F1B36293C0BC2008D5BD1 /* AdventOfCodeKit.framework */; };
 		B93F1B4B293C0BCC008D5BD1 /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB21A291C2CDC0032E7E9 /* Day1.swift */; };
 		B93F1B4C293C0BCC008D5BD1 /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB21A291C2CDC0032E7E9 /* Day1.swift */; };
@@ -817,6 +824,13 @@
 				B93F1B90293C1287008D5BD1 /* Day12Tests.swift in Sources */,
 				B93F1B71293C1222008D5BD1 /* Day2Tests.swift in Sources */,
 				B93F1BB7293C12ED008D5BD1 /* Day25Tests.swift in Sources */,
+				B93DDC292CFC26B600097A9B /* Point.swift in Sources */,
+				B93DDC2A2CFC26B600097A9B /* Queue.swift in Sources */,
+				B93DDC2B2CFC26B600097A9B /* Point3D.swift in Sources */,
+				B93DDC2C2CFC26B600097A9B /* Math.swift in Sources */,
+				B93DDC2D2CFC26B700097A9B /* Extensions.swift in Sources */,
+				B93DDC2E2CFC26B700097A9B /* ElfCode.swift in Sources */,
+				B93DDC2F2CFC26B700097A9B /* AStar.swift in Sources */,
 				B93F1BB3293C12E1008D5BD1 /* Day24.swift in Sources */,
 				B93F1BAA293C12CA008D5BD1 /* Day21.swift in Sources */,
 				B93F1BB4293C12E6008D5BD1 /* Day24Tests.swift in Sources */,
@@ -1081,7 +1095,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G4BG5X47H7;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
@@ -1103,7 +1117,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G4BG5X47H7;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
