@@ -28,8 +28,19 @@ final class Day3: Day {
             ")"
         }
         
+        let doIndexes = input.ranges(of: "do()").map { $0.lowerBound }
+        let dontIndexes = input.ranges(of: "don't()").map { $0.lowerBound }
+        
         return input.matches(of: regex).map { match in
-            match.output.1 * match.output.2
+            let doIndex = doIndexes.last { $0 < match.range.lowerBound } ?? input.startIndex
+            guard let dontIndex = dontIndexes.last(where: { $0 < match.range.lowerBound }) else {
+                return match.output.1 * match.output.2
+            }
+            if doIndex > dontIndex {
+                return match.output.1 * match.output.2
+            } else {
+                return 0
+            }
         }
         .sum
         .description
