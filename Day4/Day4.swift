@@ -8,8 +8,6 @@
 import Foundation
 
 final class Day4: Day {
-    let target = "XMAS".map { $0 }
-    
     func run(input: String) -> String {
         let grid = input.lines.map { $0.map { $0 }}
         var x = 0
@@ -18,7 +16,9 @@ final class Day4: Day {
         while y < grid.count {
             x = 0
             while x < grid[y].count {
-                count += search(input: grid, for: target, at: [x, y])
+                if search(input: grid, at: [x, y]) {
+                    count += 1
+                }
                 x += 1
             }
             y += 1
@@ -27,20 +27,16 @@ final class Day4: Day {
         return count.description
     }
     
-    func search(input: [[Character]], for target: [Character], at: Point) -> Int {
-        guard at.value(in: input) == target.first else {
-            return 0
+    func search(input: [[Character]], at: Point) -> Bool {
+        guard at.value(in: input) == "A" else {
+            return false
         }
         
-        return Point.allDirections.filter { direction in
-            for index in target.indices.dropFirst() {
-                let current = at + (direction * index)
-                guard current.value(in: input) == target[index] else {
-                    return false
-                }
-            }
-            
-            return true
-        }.count
+        let topLeft = (at + .left + .up).value(in: input)
+        let bottomLeft = (at + .left + .down).value(in: input)
+        let topRight = (at + .right + .up).value(in: input)
+        let bottomRight = (at + .right + .down).value(in: input)
+        
+        return ((topLeft == "M" && bottomRight == "S") || (topLeft == "S" && bottomRight == "M")) && ((topRight == "M" && bottomLeft == "S") || (topRight == "S" && bottomLeft == "M"))
     }
 }

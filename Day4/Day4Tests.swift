@@ -24,6 +24,6 @@ SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX
 """
-        XCTAssertEqual(day.run(input: input), "18")
+        XCTAssertEqual(day.run(input: input), "9")
     }
 }
