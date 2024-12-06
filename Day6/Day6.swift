@@ -10,8 +10,7 @@ import Foundation
 final class Day6: Day {
     func run(input: String) -> String {
         var grid = Set<Point>()
-        var position = Point.zero
-        var direction = Point.up
+        var start = Vector(position: .zero, direction: .up)
         
         let lines = input.lines
         for (y, line) in lines.enumerated() {
@@ -19,7 +18,7 @@ final class Day6: Day {
                 if cell == "#" {
                     grid.insert([x, y])
                 } else if cell == "^" {
-                    position = [x, y]
+                    start.position = [x, y]
                 }
             }
         }
@@ -27,16 +26,51 @@ final class Day6: Day {
         let xBoundary = 0 ..< lines[0].count
         let yBoundary = 0 ..< lines.count
         
-        var visited = Set<Point>()
-        while xBoundary.contains(position.x) && yBoundary.contains(position.y) {
-            visited.insert(position)
-            if grid.contains(position + direction) {
-                direction = direction.rotate(clockwise: true)
+        var visited = Set<Vector>()
+        var current = start
+        while xBoundary.contains(current.position.x) && yBoundary.contains(current.position.y) {
+            visited.insert(current)
+            if grid.contains(current.nextStep()) {
+                current = current.rotate(clockwise: true)
             } else {
-                position += direction
+                current.position = current.nextStep()
             }
         }
         
-        return visited.count.description
+        visited.remove(start)
+        
+        let group = DispatchGroup()
+        var obstacles = Set<Point>()
+        for point in visited.map({ $0.position }) {
+            DispatchQueue.global().async {
+                group.enter()
+                var newGrid = grid
+                newGrid.insert(point)
+                
+                var newVisited = Set<Vector>()
+                var newCurrent = start
+                while xBoundary.contains(newCurrent.position.x) && yBoundary.contains(newCurrent.position.y) {
+                    if newVisited.contains(newCurrent) {
+                        break
+                    }
+                    newVisited.insert(newCurrent)
+                    if newGrid.contains(newCurrent.nextStep()) {
+                        newCurrent = newCurrent.rotate(clockwise: true)
+                    } else {
+                        newCurrent.position = newCurrent.nextStep()
+                    }
+                }
+                
+                if newVisited.contains(newCurrent) {
+                    DispatchQueue.main.async {
+                        obstacles.insert(point)
+                    }
+                }
+                group.leave()
+            }
+        }
+        
+        group.wait()
+        return obstacles.count.description
     }
 }

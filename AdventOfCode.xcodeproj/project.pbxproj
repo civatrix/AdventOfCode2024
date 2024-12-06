@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B939482B2D02D251006ED1C1 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B939482A2D02D251006ED1C1 /* Vector.swift */; };
+		B939482C2D02D251006ED1C1 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B939482A2D02D251006ED1C1 /* Vector.swift */; };
 		B93AB212291C2A130032E7E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB211291C2A130032E7E9 /* main.swift */; };
 		B93DDC292CFC26B600097A9B /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550632CEAD4E40083B797 /* Point.swift */; };
 		B93DDC2A2CFC26B600097A9B /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96550652CEAD4E40083B797 /* Queue.swift */; };
@@ -148,6 +150,7 @@
 
 /* Begin PBXFileReference section */
 		B92CA2432B196E7500943067 /* AdventOfCode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdventOfCode.entitlements; sourceTree = "<group>"; };
+		B939482A2D02D251006ED1C1 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		B93AB20E291C2A130032E7E9 /* AdventOfCode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdventOfCode; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93AB211291C2A130032E7E9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B93AB219291C2CC70032E7E9 /* input */ = {isa = PBXFileReference; lastKnownFileType = text; path = input; sourceTree = "<group>"; };
@@ -603,6 +606,7 @@
 				B96550632CEAD4E40083B797 /* Point.swift */,
 				B96550642CEAD4E40083B797 /* Point3D.swift */,
 				B96550652CEAD4E40083B797 /* Queue.swift */,
+				B939482A2D02D251006ED1C1 /* Vector.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -771,6 +775,7 @@
 				B93F1B57293C0C42008D5BD1 /* Day.swift in Sources */,
 				B93F1B78293C1248008D5BD1 /* Day5.swift in Sources */,
 				B965506B2CEAD4E40083B797 /* Point.swift in Sources */,
+				B939482B2D02D251006ED1C1 /* Vector.swift in Sources */,
 				B93F1BA7293C12C3008D5BD1 /* Day20.swift in Sources */,
 				B93F1BAF293C12D8008D5BD1 /* Day23.swift in Sources */,
 				B93F1BB5293C12EA008D5BD1 /* Day25.swift in Sources */,
@@ -827,6 +832,7 @@
 				B93DDC292CFC26B600097A9B /* Point.swift in Sources */,
 				B93DDC2A2CFC26B600097A9B /* Queue.swift in Sources */,
 				B93DDC2B2CFC26B600097A9B /* Point3D.swift in Sources */,
+				B939482C2D02D251006ED1C1 /* Vector.swift in Sources */,
 				B93DDC2C2CFC26B600097A9B /* Math.swift in Sources */,
 				B93DDC2D2CFC26B700097A9B /* Extensions.swift in Sources */,
 				B93DDC2E2CFC26B700097A9B /* ElfCode.swift in Sources */,
