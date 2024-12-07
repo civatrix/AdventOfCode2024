@@ -12,7 +12,7 @@ final class Day7: Day {
         return input.lines.map { line in
             var digits = line.allDigits
             let total = digits.removeFirst()
-            let matches = recur(numbers: digits, nextOperator: +, target: total) || recur(numbers: digits, nextOperator: *, target: total)
+            let matches = recur(numbers: digits, nextOperator: +, target: total) || recur(numbers: digits, nextOperator: *, target: total) || recur(numbers: digits, nextOperator: concat, target: total)
             
             return matches ? total : 0
         }
@@ -30,6 +30,10 @@ final class Day7: Day {
         }
         
         let nextNumbers = [total] + numbers.dropFirst(2)
-        return recur(numbers: nextNumbers, nextOperator: +, target: target) || recur(numbers: nextNumbers, nextOperator: *, target: target)
+        return recur(numbers: nextNumbers, nextOperator: +, target: target) || recur(numbers: nextNumbers, nextOperator: *, target: target) || recur(numbers: nextNumbers, nextOperator: concat, target: target)
+    }
+    
+    func concat(_ lhs: Int, _ rhs: Int) -> Int {
+        return Int("\(lhs)\(rhs)")!
     }
 }
