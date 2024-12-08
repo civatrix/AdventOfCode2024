@@ -24,16 +24,18 @@ final class Day8: Day {
         var antinodes = Set<Point>()
         for antennae in antennaeMap.values {
             for pair in antennae.combinations(ofCount: 2) {
-                let minNode = min(pair[0], pair[1])
-                let maxNode = max(pair[0], pair[1])
+                var minNode = min(pair[0], pair[1])
+                var maxNode = max(pair[0], pair[1])
                 let vector = maxNode - minNode
-                let node1 = minNode - vector
-                if xBoundary.contains(node1.x) && yBoundary.contains(node1.y) {
-                    antinodes.insert(node1)
+                
+                while xBoundary.contains(minNode.x) && yBoundary.contains(minNode.y) {
+                    antinodes.insert(minNode)
+                    minNode -= vector
                 }
-                let node2 = maxNode + vector
-                if xBoundary.contains(node2.x) && yBoundary.contains(node2.y) {
-                    antinodes.insert(node2)
+                
+                while xBoundary.contains(maxNode.x) && yBoundary.contains(maxNode.y) {
+                    antinodes.insert(maxNode)
+                    maxNode += vector
                 }
             }
         }
