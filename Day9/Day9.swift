@@ -56,26 +56,40 @@ final class Day9: Day {
             parseState.toggle()
         }
         
-        while let nextEmptyIndex = disk.firstIndex(where: { $0.state == .empty }) {
+        let ids = disk.filter { $0.state == .disk }.map { $0.id }.reversed()
+        for nextId in ids {
+            let nextFullIndex = disk.firstIndex(where: { $0.id == nextId && $0.state == .disk })!
+            let nextFull = disk[nextFullIndex]
+            let nextEmptyIndex = disk.firstIndex { $0.state == .empty && $0.size >= nextFull.size }
+            guard let nextEmptyIndex, nextEmptyIndex < nextFullIndex else { continue }
             let nextEmpty = disk[nextEmptyIndex]
-            let nextFull = disk.last!
             if nextEmpty.size > nextFull.size {
                 disk[nextEmptyIndex].size -= nextFull.size
+                disk.remove(at: nextFullIndex)
+                disk.insert(.init(state: .empty, size: nextFull.size, id: 0), at: nextFullIndex)
                 disk.insert(nextFull, at: nextEmptyIndex)
-                disk.removeLast()
-            } else if nextEmpty.size < nextFull.size{
-                disk.remove(at: nextEmptyIndex)
-                disk.insert(.init(state: .disk, size: nextEmpty.size, id: nextFull.id), at: nextEmptyIndex)
-                disk[disk.endIndex - 1].size -= nextEmpty.size
             } else {
+                disk.remove(at: nextFullIndex)
+                disk.insert(.init(state: .empty, size: nextFull.size, id: 0), at: nextFullIndex)
                 disk.remove(at: nextEmptyIndex)
                 disk.insert(nextFull, at: nextEmptyIndex)
-                disk.removeLast()
             }
             
             disk.trimSuffix(while: { $0.state == .empty })
         }
         
-        return disk.flatMap { $0.array }.enumerated().map { $0.offset * $0.element }.sum.description
+        var total = 0
+        var index = 0
+        for segment in disk {
+            if segment.state == .disk {
+                for block in segment.array {
+                    total += block * index
+                    index += 1
+                }
+            } else {
+                index += segment.size
+            }
+        }
+        return total.description
     }
 }
