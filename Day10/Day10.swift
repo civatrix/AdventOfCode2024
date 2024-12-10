@@ -20,18 +20,24 @@ final class Day10: Day {
             }
         }
         
-        return trailheads.map { destinations(from: $0).count }.sum.description
+        return trailheads.map { destinations(from: $0) }.sum.description
     }
     
-    func destinations(from: Point) -> Set<Point> {
+    var cache: [Point: Int] = [:]
+    func destinations(from: Point) -> Int {
+        if let hit = cache[from] {
+            return hit
+        }
         if map[from] == 9 {
-            return [from]
+            return 1
         }
         
         let nextElevation = map[from]! + 1
-        return from.adjacent
+        let result = from.adjacent
             .filter { map[$0, default: -1] == nextElevation }
             .map { destinations(from: $0) }
-            .reduce(into: [], { $0.formUnion($1) })
+            .sum
+        cache[from] = result
+        return result
     }
 }
