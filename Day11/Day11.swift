@@ -9,27 +9,28 @@ import Foundation
 
 final class Day11: Day {
     func run(input: String) -> String {
-        var stones = input.allDigits
+        var mapping = [Int: Int]()
+        for stone in input.allDigits {
+            mapping[stone, default: 0] += 1
+        }
         
-        for _ in 0 ..< 25 {
-            var nextStones = [Int]()
-            
-            for stone in stones {
+        for _ in 0 ..< 75 {
+            var newMapping = [Int: Int]()
+            for (stone, count) in mapping {
                 if stone == 0 {
-                    nextStones.append(1)
+                    newMapping[1, default: 0] += count
                 } else if stone.description.count.isMultiple(of: 2) {
                     let string = stone.description
                     let midIndex = string.index(string.startIndex, offsetBy: string.count / 2)
-                    nextStones.append(Int(string.prefix(upTo: midIndex))!)
-                    nextStones.append(Int(string.suffix(from: midIndex))!)
+                    newMapping[Int(string.prefix(upTo: midIndex))!, default: 0] += count
+                    newMapping[Int(string.suffix(from: midIndex))!, default: 0] += count
                 } else {
-                    nextStones.append(stone * 2024)
+                    newMapping[stone * 2024, default: 0] += count
                 }
             }
-            
-            stones = nextStones
+            mapping = newMapping
         }
         
-        return stones.count.description
+        return mapping.values.sum.description
     }
 }
