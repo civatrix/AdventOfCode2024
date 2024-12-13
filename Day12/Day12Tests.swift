@@ -24,6 +24,19 @@ MIIIIIJJEE
 MIIISIJEEE
 MMMISSJEEE
 """
-        XCTAssertEqual(day.run(input: input), "1930")
+        XCTAssertEqual(day.run(input: input), "1206")
+    }
+    
+    func testNested() throws {
+        let input =
+"""
+AAAAAA
+AAABBA
+AAABBA
+ABBAAA
+ABBAAA
+AAAAAA
+"""
+        XCTAssertEqual(day.run(input: input), "368")
     }
 }

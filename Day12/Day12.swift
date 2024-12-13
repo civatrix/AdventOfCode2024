@@ -30,15 +30,46 @@ final class Day12: Day {
             }
         }
         
-        var total = 0
-        for plot in plots {
-            var borders = plot.count * 4
-            for cell in plot {
-                borders -= cell.adjacent.filter { plot.contains($0) }.count
+        return plots.map { plot in
+            var borderCells = Set<Point>()
+            for cell in plot where cell.adjacent.filter({ plot.contains($0) }).count < 4 {
+                borderCells.insert(cell)
+            }
+            var crawledCells = Set<Point>()
+            var edges = 0
+            while let start = borderCells.subtracting(crawledCells).min() {
+                let startingDirection: Point
+                if !plot.contains(start + .up) {
+                    startingDirection = .right
+                } else if !plot.contains(start + .right) {
+                    startingDirection = .down
+                } else if !plot.contains(start + .down) {
+                    startingDirection = .left
+                } else {
+                    startingDirection = .up
+                }
+                var crawler = (location: start + startingDirection.rotate(clockwise: false), direction: startingDirection, touching: startingDirection.rotate(clockwise: true))
+                let startLocation = crawler.location
+                repeat {
+                    crawledCells.insert(crawler.location + crawler.touching)
+                    if borderCells.contains(crawler.location + crawler.direction) {
+                        crawler.direction = crawler.direction.rotate(clockwise: false)
+                        crawler.touching = crawler.touching.rotate(clockwise: false)
+                        edges += 1
+                    } else if !borderCells.contains(crawler.location + crawler.direction + crawler.touching) {
+                        crawler.location = crawler.location + crawler.direction + crawler.touching
+                        crawler.direction = crawler.direction.rotate(clockwise: true)
+                        crawler.touching = crawler.touching.rotate(clockwise: true)
+                        edges += 1
+                    } else {
+                        crawler.location += crawler.direction
+                    }
+                } while !(crawler.location == startLocation && crawler.direction == startingDirection)
             }
             
-            total += borders * plot.count
+            return edges * plot.count
         }
-        return total.description
+        .sum
+        .description
     }
 }
