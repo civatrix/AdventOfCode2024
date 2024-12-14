@@ -15,8 +15,10 @@ final class Day14: Day {
             return Vector(position: [numbers[0], numbers[1]], direction: [numbers[2], numbers[3]])
         }
         
-        for index in bots.indices {
-            for _ in 0 ..< 100 {
+        var minDanger = Int.max
+        var minDangerStep = 0
+        for step in 1 ... bottomCorner.x * bottomCorner.y {
+            for index in bots.indices {
                 bots[index].position = bots[index].nextStep()
                 if bots[index].position.x < 0 {
                     bots[index].position.x += bottomCorner.x
@@ -29,24 +31,31 @@ final class Day14: Day {
                     bots[index].position.y -= bottomCorner.y
                 }
             }
-        }
-        
-        let center = Point(x: bottomCorner.x / 2, y: bottomCorner.y / 2)
-        var topLeft = 0
-        var bottomLeft = 0
-        var topRight = 0
-        var bottomRight = 0
-        for bot in bots {
-            if bot.position.x < center.x && bot.position.y < center.y {
-                topLeft += 1
-            } else if bot.position.x < center.x && bot.position.y > center.y {
-                bottomLeft += 1
-            } else if bot.position.x > center.x && bot.position.y < center.y {
-                topRight += 1
-            } else if bot.position.x > center.x && bot.position.y > center.y {
-                bottomRight += 1
+            
+            let center = Point(x: bottomCorner.x / 2, y: bottomCorner.y / 2)
+            var topLeft = 0
+            var bottomLeft = 0
+            var topRight = 0
+            var bottomRight = 0
+            for bot in bots {
+                if bot.position.x < center.x && bot.position.y < center.y {
+                    topLeft += 1
+                } else if bot.position.x < center.x && bot.position.y > center.y {
+                    bottomLeft += 1
+                } else if bot.position.x > center.x && bot.position.y < center.y {
+                    topRight += 1
+                } else if bot.position.x > center.x && bot.position.y > center.y {
+                    bottomRight += 1
+                }
+            }
+            let danger = (topLeft * topRight * bottomLeft * bottomRight)
+            if danger < minDanger {
+                minDanger = danger
+                minDangerStep = step
+                print(step)
+                Set(bots.map { $0.position }).printPoints()
             }
         }
-        return (topLeft * topRight * bottomLeft * bottomRight).description
+        return minDangerStep.description
     }
 }

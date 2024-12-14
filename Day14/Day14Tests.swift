@@ -27,6 +27,6 @@ p=2,4 v=2,-3
 p=9,5 v=-3,-3
 """
         day.bottomCorner = Point(x: 11, y: 7)
-        XCTAssertEqual(day.run(input: input), "12")
+        XCTAssertEqual(day.run(input: input), "5")
     }
 }
