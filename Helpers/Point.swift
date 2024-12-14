@@ -54,7 +54,7 @@ public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable, E
         self.y = y
     }
     
-    public let x, y: Int
+    public var x, y: Int
     
     public var description: String {
         "(x: \(x), y: \(y))"
