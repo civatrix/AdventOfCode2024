@@ -11,21 +11,25 @@ final class Day19: Day {
     func run(input: String) -> String {
         var lines = input.lines
         let towels = lines.removeFirst().components(separatedBy: ", ")
-        return lines.filter { line in
+        return lines.map { line in
             canMake(pattern: line, from: towels)
-        }.count.description
+        }.sum.description
     }
     
-    func canMake(pattern: any StringProtocol, from towels: [String]) -> Bool {
+    var cache = [String: Int]()
+    func canMake(pattern: any StringProtocol, from towels: [String]) -> Int {
         guard !pattern.isEmpty else {
-            return true
+            return 1
         }
-        for towel in towels where pattern.starts(with: towel) {
-            if canMake(pattern: pattern.dropFirst(towel.count), from: towels) {
-                return true
-            }
+        if let cacheHit = cache[String(pattern)] {
+            return cacheHit
         }
-        
-        return false
+        let result = towels
+            .filter { pattern.starts(with: $0) }
+            .map { towel in
+                canMake(pattern: pattern.dropFirst(towel.count), from: towels)
+            }.sum
+        cache[String(pattern)] = result
+        return result
     }
 }

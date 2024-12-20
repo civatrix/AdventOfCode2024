@@ -24,6 +24,6 @@ bwurrg
 brgr
 bbrgwb
 """
-        XCTAssertEqual(day.run(input: input), "6")
+        XCTAssertEqual(day.run(input: input), "16")
     }
 }
