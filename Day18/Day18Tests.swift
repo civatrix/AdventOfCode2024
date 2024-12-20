@@ -40,7 +40,6 @@ final class Day18Tests: XCTestCase {
 2,0
 """
         day.gridSize = 6
-        day.dropCount = 12
-        XCTAssertEqual(day.run(input: input), "22")
+        XCTAssertEqual(day.run(input: input), "6,1")
     }
 }
