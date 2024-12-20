@@ -10,16 +10,35 @@ import Foundation
 final class Day17: Day {
     func run(input: String) -> String {
         let numbers = input.allDigits
-        var a = numbers[0]
-        var b = numbers[1]
-        var c = numbers[2]
-        var instructionPointer = 0
+        let instructions = Array(numbers.dropFirst(3))
+        return search(digit: 0, result: 0, instructions: instructions, numbers: numbers)?.description ?? ""
+    }
+    
+    func search(digit: Int, result: Int, instructions: [Int], numbers: [Int]) -> Int? {
+        guard digit < instructions.count else {
+            return result >> 3
+        }
+        for aSeed in 0 ..< 8 {
+            let candidate = result + aSeed
+            let output = run(instructions: instructions, aSeed: candidate, bSeed: numbers[1], cSeed: numbers[2])
+            if output == instructions.suffix(digit + 1) {
+                if let fullResult = search(digit: digit + 1, result: candidate << 3, instructions: instructions, numbers: numbers) {
+                    return fullResult
+                }
+            }
+        }
+        return nil
+    }
         
-        let instructions = numbers.dropFirst(3)
+    func run(instructions: [Int], aSeed: Int, bSeed: Int, cSeed: Int) -> [Int] {
+        var a = aSeed
+        var b = bSeed
+        var c = cSeed
+        var instructionPointer = 0
         var output = [Int]()
         while instructionPointer + 1 < instructions.count {
-            let opCode = instructions[n: instructionPointer]
-            let operand = instructions[n: instructionPointer + 1]
+            let opCode = instructions[instructionPointer]
+            let operand = instructions[instructionPointer + 1]
             let comboOperand =  {
                 switch operand {
                 case 0: 0
@@ -57,6 +76,6 @@ final class Day17: Day {
             }
             instructionPointer += 2
         }
-        return output.map { String($0) }.joined(separator: ",")
+        return output
     }
 }
