@@ -13,7 +13,23 @@ final class Day20Tests: XCTestCase {
     func testDay() throws {
         let input =
 """
+###############
+#...#...#.....#
+#.#.#.#.#.###.#
+#S#...#.#.#...#
+#######.#.#.###
+#######.#.#...#
+#######.#.###.#
+###..E#...#...#
+###.#######.###
+#...###...#...#
+#.#####.#.###.#
+#.#...#.#.#...#
+#.#.#.#.#.#.###
+#...#...#...###
+###############
 """
-        XCTAssertEqual(day.run(input: input), "")
+        day.cheatThreshold = 1
+        XCTAssertEqual(day.run(input: input), "44")
     }
 }
