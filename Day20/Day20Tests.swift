@@ -29,7 +29,7 @@ final class Day20Tests: XCTestCase {
 #...#...#...###
 ###############
 """
-        day.cheatThreshold = 1
-        XCTAssertEqual(day.run(input: input), "44")
+        day.cheatThreshold = 50
+        XCTAssertEqual(day.run(input: input), "285")
     }
 }

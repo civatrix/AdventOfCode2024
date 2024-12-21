@@ -33,18 +33,31 @@ final class Day20: Day {
         let defaultPath = aStar.path(start: start, target: end)
         let pathIndexes = [Point: Int](uniqueKeysWithValues: defaultPath.enumerated().map { ($0.element, $0.offset) })
         let cheats = grid.flatMap { point in
-            Point.adjacentDirections
-                .map { (point, point + ($0 * 2)) }
+            allPointsReachable(from: point, in: 20)
+                .map { (point, $0) }
                 .filter { !walls.contains($0.1) }
                 .filter { $0.1.x > 0 && $0.1.y > 0 && $0.1.x < maxX && $0.1.y < maxY }
         }
         return cheats.map { (cheatStart, cheatEnd) in
             let startIndex = pathIndexes[cheatStart]!
             let endIndex = pathIndexes[cheatEnd]!
-            return endIndex - startIndex - 2
+            return endIndex - startIndex - cheatStart.distance(to: cheatEnd)
         }
         .filter { $0 >= cheatThreshold }
         .count
         .description
+    }
+    
+    func allPointsReachable(from: Point, in steps: Int) -> Set<Point> {
+        var set = Set<Point>()
+        for column in 0 ... steps {
+            for row in 0 ... steps - column {
+                set.insert(from + [row, column])
+                set.insert(from + [-row, column])
+                set.insert(from + [row, -column])
+                set.insert(from + [-row, -column])
+            }
+        }
+        return set
     }
 }
