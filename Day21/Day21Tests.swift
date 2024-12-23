@@ -19,6 +19,7 @@ final class Day21Tests: XCTestCase {
 456A
 379A
 """
+        day.maxKeypadDepth = 2
         XCTAssertEqual(day.run(input: input), "126384")
     }
 }

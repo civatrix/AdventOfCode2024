@@ -8,12 +8,18 @@
 import Foundation
 
 final class Day21: Day {
+    struct CacheKey: Hashable {
+        let code: [Character]
+        let depth: Int
+    }
+    
+    var maxKeypadDepth = 25
     func run(input: String) -> String {
         return input.lines.map { line in
             let number = line.allDigits[0]
-            let strokes = strokes(for: line.map { $0 }, keypadDepth: 2)
+            let strokes = strokes(for: line.map { $0 }, keypadDepth: maxKeypadDepth)
             
-            return number * strokes.count
+            return number * strokes
         }
         .sum
         .description
@@ -41,10 +47,16 @@ final class Day21: Day {
         ">": [2,1],
     ]
     let directionalDeadKey = Point(x: 0, y: 0)
-    func strokes(for code: [Character], keypadDepth: Int) -> [Character] {
-        var totalStrokes = [Character]()
-        let keypad = keypadDepth == 2 ? numericKeypad : directionalKeypad
-        let deadKey = keypadDepth == 2 ? numericDeadKey : directionalDeadKey
+
+    var cache = [CacheKey: Int]()
+    func strokes(for code: [Character], keypadDepth: Int) -> Int {
+        let key = CacheKey(code: code, depth: keypadDepth)
+        if let cacheHit = cache[key] {
+            return cacheHit
+        }
+        var totalStrokes = 0
+        let keypad = keypadDepth == maxKeypadDepth ? numericKeypad : directionalKeypad
+        let deadKey = keypadDepth == maxKeypadDepth ? numericDeadKey : directionalDeadKey
         var currentPosition = keypad["A"]!
         for character in code {
             let nextPosition = keypad[character]!
@@ -83,15 +95,16 @@ final class Day21: Day {
                         return true
                     }
                     .map { strokes(for: $0, keypadDepth: keypadDepth - 1) }
-                    .min { $0.count < $1.count }
-                totalStrokes.append(contentsOf: bestStrokes!)
+                    .min()
+                totalStrokes += bestStrokes!
             } else {
-                totalStrokes.append(contentsOf: nextVerticalStrokes + nextHorizontalStrokes + ["A"])
+                totalStrokes += (nextVerticalStrokes + nextHorizontalStrokes + ["A"]).count
             }
             
             currentPosition = nextPosition
         }
         
+        cache[key] = totalStrokes
         return totalStrokes
     }
 }
