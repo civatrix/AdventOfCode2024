@@ -46,6 +46,6 @@ wh-qp
 tb-vc
 td-yn
 """
-        XCTAssertEqual(day.run(input: input), "7")
+        XCTAssertEqual(day.run(input: input), "co,de,ka,ta")
     }
 }

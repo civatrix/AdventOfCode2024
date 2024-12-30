@@ -9,29 +9,35 @@ import Foundation
 
 final class Day23: Day {
     func run(input: String) -> String {
-        var network = [String: Set<String>]()
+        var connections = [String: Set<String>]()
         
         for line in input.lines {
             let (lhs, rhs) = line.bifurcate(on: "-")
-            network[lhs, default: []].insert(rhs)
-            network[rhs, default: []].insert(lhs)
+            connections[lhs, default: []].insert(rhs)
+            connections[rhs, default: []].insert(lhs)
         }
         
-        for key in network.keys {
-            network[key, default: []].insert(key)
+        for key in connections.keys {
+            connections[key, default: []].insert(key)
         }
+        let keys = Set(connections.keys)
+        var networks = Set(keys.map { Set([$0]) })
         
-        return network.keys.combinations(ofCount: 3)
-            .filter { $0.contains(where: { $0.hasPrefix("t") }) }
-            .filter { combination in
-                for key in combination {
-                    if !network[key, default: []].isSuperset(of: combination) {
-                        return false
-                    }
+        for key in keys {
+            var nextNetworks = Set<Set<String>>()
+            for network in networks {
+                let fits = network.allSatisfy { connections[key]!.contains($0) && connections[$0]!.contains(key) }
+                if fits {
+                    nextNetworks.insert(network.union([key]))
+                } else {
+                    nextNetworks.insert(network)
                 }
-                return true
             }
-            .count
-            .description
+            networks = nextNetworks
+        }
+        
+        return networks.max { $0.count < $1.count }!
+            .sorted()
+            .joined(separator: ",")
     }
 }
